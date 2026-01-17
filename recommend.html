@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Crop Recommendation | Exotic Crop Intelligence</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <span class="logo-icon">🌱</span>
+                    <span class="logo-text">Exotic Crop Intelligence</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="crops.html">Explore Crops</a></li>
+                    <li><a href="recommend.html" class="active">Get Recommendation</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">Get Personalized Crop Recommendation</h1>
+            <p class="page-subtitle">Enter your farm details to discover the best exotic crop for your land</p>
+        </div>
+    </section>
+
+    <!-- Recommendation Form -->
+    <section class="recommendation-section">
+        <div class="container">
+            <div class="form-container">
+                <!-- Progress Indicator -->
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <p class="progress-text">Complete all fields to get your recommendation</p>
+                </div>
+
+                <!-- Input Form -->
+                <form id="recommendationForm" class="recommendation-form">
+                    <!-- Soil Composition Section -->
+                    <div class="form-section">
+                        <h3 class="form-section-title">Soil Composition</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="nitrogen">Nitrogen (N) Ratio</label>
+                                <input type="number" id="nitrogen" name="nitrogen" min="0" max="150" step="1" required>
+                                <span class="input-hint">Typical range: 20-100 kg/ha</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="phosphorus">Phosphorus (P) Ratio</label>
+                                <input type="number" id="phosphorus" name="phosphorus" min="0" max="150" step="1"
+                                    required>
+                                <span class="input-hint">Typical range: 20-100 kg/ha</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="potassium">Potassium (K) Ratio</label>
+                                <input type="number" id="potassium" name="potassium" min="0" max="150" step="1"
+                                    required>
+                                <span class="input-hint">Typical range: 20-100 kg/ha</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="soilPH">Soil pH Value</label>
+                                <input type="number" id="soilPH" name="soilPH" min="3" max="10" step="0.1" required>
+                                <span class="input-hint">Typical range: 4.5-8.5</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="organicCarbon">Organic Carbon (%)</label>
+                                <input type="number" id="organicCarbon" name="organicCarbon" min="0" max="5" step="0.1"
+                                    required>
+                                <span class="input-hint">Typical range: 0.3-3.0%</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="soilType">Soil Type</label>
+                                <select id="soilType" name="soilType" required>
+                                    <option value="">Select soil type</option>
+                                    <option value="sandy">Sandy</option>
+                                    <option value="loamy">Loamy</option>
+                                    <option value="clay">Clay</option>
+                                    <option value="sandy-loam">Sandy Loam</option>
+                                    <option value="red-sandy">Red Sandy</option>
+                                    <option value="well-drained">Well-drained</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Climate & Environment Section -->
+                    <div class="form-section">
+                        <h3 class="form-section-title">Climate & Environment</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="temperature">Average Temperature (°C)</label>
+                                <input type="number" id="temperature" name="temperature" min="-10" max="45" step="0.1"
+                                    required>
+                                <span class="input-hint">Annual average temperature</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="humidity">Humidity (%)</label>
+                                <input type="number" id="humidity" name="humidity" min="0" max="100" step="1" required>
+                                <span class="input-hint">Relative humidity percentage</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="rainfall">Annual Rainfall (mm)</label>
+                                <input type="number" id="rainfall" name="rainfall" min="0" max="5000" step="10"
+                                    required>
+                                <span class="input-hint">Total annual rainfall</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="sunlightHours">Sunlight Hours (per day)</label>
+                                <input type="number" id="sunlightHours" name="sunlightHours" min="0" max="12" step="0.5"
+                                    required>
+                                <span class="input-hint">Average daily sunlight</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="altitude">Altitude (meters above MSL)</label>
+                                <input type="number" id="altitude" name="altitude" min="0" max="4000" step="10"
+                                    required>
+                                <span class="input-hint">Height above mean sea level</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Budget Section -->
+                    <div class="form-section">
+                        <h3 class="form-section-title">Budget Information</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="budget">Budget per Acre (₹)</label>
+                                <input type="number" id="budget" name="budget" min="0" max="10000000" step="10000"
+                                    required>
+                                <span class="input-hint">Available cultivation budget</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-large">
+                            Get Crop Recommendation
+                            <span class="btn-arrow">→</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Results Section (Hidden initially) -->
+            <div id="resultsSection" class="results-section" style="display: none;">
+                <!-- Recommendation Card -->
+                <div class="recommendation-card" id="recommendationCard">
+                    <!-- Will be populated dynamically -->
+                </div>
+
+                <!-- Cost & Profit Chart -->
+                <div class="chart-section">
+                    <h3 class="chart-title">5-Year Cost & Profit Projection</h3>
+                    <canvas id="profitChart"></canvas>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="result-actions">
+                    <button class="btn btn-secondary" onclick="resetForm()">
+                        Try Another Recommendation
+                    </button>
+                    <a href="crops.html" class="btn btn-outline">
+                        Explore All Crops
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <span class="logo-icon">🌱</span>
+                        <span class="logo-text">Exotic Crop Intelligence</span>
+                    </div>
+                    <p class="footer-description">
+                        Empowering Indian farmers with data-driven insights for profitable exotic crop cultivation.
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-heading">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="crops.html">Explore Crops</a></li>
+                        <li><a href="recommend.html">Get Recommendation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-heading">Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Cultivation Guides</a></li>
+                        <li><a href="#">Market Prices</a></li>
+                        <li><a href="#">Research Papers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-heading">Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">Feedback</a></li>
+                        <li><a href="#">About Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Exotic Crop Intelligence. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="static/js/data.js"></script>
+    <script src="static/js/chart.js"></script>
+    <script src="static/js/recommend.js"></script>
+</body>
+
+</html>
