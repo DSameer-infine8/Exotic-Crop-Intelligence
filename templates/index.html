@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exotic Crop Intelligence | AI-Powered Farming Solutions</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="container">
+        <div class="nav-content">
+            <div class="logo">
+                <span class="logo-icon">🌱</span>
+                <span class="logo-text">Exotic Crop Intelligence</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('home') }}" class="active">Home</a></li>
+                <li><a href="{{ url_for('crops_page') }}">Explore Crops</a></li>
+                <li><a href="{{ url_for('recommend_page') }}">Get Recommendation</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero">
+
+    <!-- Hero Image -->
+    <div class="hero-image">
+        <img src="{{ url_for('static', filename='images/Gemini_Generated_Image_4lek5x4lek5x4lek.png') }}" alt="Exotic Farming">
+    </div>
+
+    <!-- Background -->
+    <div class="hero-background">
+        <div class="hero-pattern"></div>
+        <div class="hero-gradient"></div>
+    </div>
+
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-badge">AI-Powered Agriculture</div>
+
+            <div class="hero-blurbox">
+                <h1 class="hero-title">
+                    Grow High-Profit<br>
+                    <span class="gradient-text">Exotic Crops</span><br>
+                    with Data-Driven Intelligence
+                </h1>
+                <p class="hero-subtitle">
+                    AI-Inspired Recommendation System for Indian Exotic Farming
+                </p>
+            </div>
+
+            <div class="hero-cta">
+                <a href="{{ url_for('crops_page') }}" class="btn btn-primary">
+                    Explore Exotic Crops <span class="btn-arrow">→</span>
+                </a>
+                <a href="{{ url_for('recommend_page') }}" class="btn btn-secondary">
+                    Get Crop Recommendation <span class="btn-arrow">→</span>
+                </a>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">14</div>
+                    <div class="stat-label">Exotic Crops</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">28+</div>
+                    <div class="stat-label">Indian States</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10K+</div>
+                    <div class="stat-label">Farmers Helped</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Why Choose Exotic Crops?</h2>
+            <p class="section-subtitle">Transform your farming with high-value, low-competition crops</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3 class="feature-title">Higher Profits</h3>
+                <p class="feature-description">Earn 3–10x more than traditional crops</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3 class="feature-title">Data-Driven Selection</h3>
+                <p class="feature-description">ML-powered recommendations</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h3 class="feature-title">Growing Demand</h3>
+                <p class="feature-description">High-value exotic market</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3 class="feature-title">Complete Information</h3>
+                <p class="feature-description">Costs & profit projections</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔬</div>
+                <h3 class="feature-title">Scientific Approach</h3>
+                <p class="feature-description">Research-backed insights</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <h3 class="feature-title">Expert Support</h3>
+                <p class="feature-description">Guidance & best practices</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-content">
+            <h2 class="cta-title">Ready to Transform Your Farm?</h2>
+            <p class="cta-subtitle">Join thousands of farmers growing exotic crops</p>
+            <a href="{{ url_for('recommend_page') }}" class="btn btn-primary btn-large">
+                Get Your Crop Recommendation <span class="btn-arrow">→</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-bottom">
+            <p>&copy; 2025 Exotic Crop Intelligence. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- JS -->
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</body>
+</html>

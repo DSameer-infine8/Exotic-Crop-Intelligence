@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Crop Recommendation | Exotic Crop Intelligence</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="container">
+        <div class="nav-content">
+            <div class="logo">
+                <span class="logo-icon">🌱</span>
+                <span class="logo-text">Exotic Crop Intelligence</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('crops_page') }}">Explore Crops</a></li>
+                <li><a href="{{ url_for('recommend_page') }}" class="active">Get Recommendation</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <h1 class="page-title">Get Personalized Crop Recommendation</h1>
+        <p class="page-subtitle">
+            Enter your farm details to discover the best exotic crop for your land
+        </p>
+    </div>
+</section>
+
+<!-- Recommendation Form -->
+<section class="recommendation-section">
+    <div class="container">
+
+        <div class="form-container">
+
+            <!-- Input Form -->
+            <form id="recommendForm">
+
+                <!-- Soil Composition -->
+                <div class="form-section">
+                    <h3 class="form-section-title">Soil Composition</h3>
+                    <div class="form-grid">
+
+                        <input id="Nitrogen" type="number" placeholder="Nitrogen (N)" required>
+                        <input id="Phosphorous" type="number" placeholder="Phosphorous (P)" required>
+                        <input id="Potassium" type="number" placeholder="Potassium (K)" required>
+                        <input id="Soil_pH" type="number" step="0.1" placeholder="Soil pH" required>
+                        <input id="Organic_Carbon" type="number" step="0.1" placeholder="Organic Carbon (%)" required>
+
+                        <select id="Soil_Type" required>
+                            <option value="">Select Soil Type</option>
+                            <option value="Loamy">Loamy</option>
+                            <option value="Sandy">Sandy</option>
+                            <option value="Clay">Clay</option>
+                        </select>
+
+                    </div>
+                </div>
+
+                <!-- Climate -->
+                <div class="form-section">
+                    <h3 class="form-section-title">Climate & Environment</h3>
+                    <div class="form-grid">
+
+                        <input id="Temperature" type="number" step="0.1" placeholder="Temperature (°C)" required>
+                        <input id="Humidity" type="number" placeholder="Humidity (%)" required>
+                        <input id="Rainfall" type="number" placeholder="Rainfall (mm)" required>
+                        <input id="Sunlight_Hours" type="number" step="0.5" placeholder="Sunlight Hours" required>
+                        <input id="Altitude_msl" type="number" placeholder="Altitude (m)" required>
+
+                    </div>
+                </div>
+
+                <!-- Budget -->
+                <div class="form-section">
+                    <h3 class="form-section-title">Budget</h3>
+                    <div class="form-grid">
+                        <input id="Budget_per_Acre" type="number" placeholder="Budget per Acre (₹)" required>
+                    </div>
+                </div>
+
+                <!-- Submit -->
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary btn-large">
+                        Get Crop Recommendation <span class="btn-arrow">→</span>
+                    </button>
+                </div>
+
+            </form>
+        </div>
+
+        <!-- Results -->
+        <div id="resultSection" class="results-section" style="display:none;">
+            <h2 id="predictedCrop"></h2>
+            <img id="cropImage" alt="Recommended Crop">
+            <p id="errorMsg"></p>
+        </div>
+
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-bottom">
+            <p>&copy; 2025 Exotic Crop Intelligence. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- JS -->
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+<script src="{{ url_for('static', filename="js/recommendation.js") }}"></script>
+
+</body>
+</html>
