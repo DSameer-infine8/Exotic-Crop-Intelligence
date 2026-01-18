@@ -1,6 +1,5 @@
 from flask import Flask, request, jsonify, render_template
 import pandas as pd
-import numpy as np
 import pickle
 
 # -----------------------------
@@ -16,82 +15,69 @@ le = pickle.load(open("models/label.pkl", "rb"))
 model_columns = pickle.load(open("models/model_columns.pkl", "rb"))
 
 # -----------------------------
-# Home Route
+# Pages
 # -----------------------------
 @app.route("/")
 def home():
     return render_template("index.html")
 
-
-# -----------------------------
-# Crops Detail Page
-# -----------------------------
 @app.route("/crops")
 def crops_page():
     return render_template("crops.html")
 
-
-
-# -----------------------------
-# Recommendation Page
-# -----------------------------
 @app.route("/recommend")
 def recommend_page():
     return render_template("recommend.html")
 
-
 # -----------------------------
-# Prediction API (JSON)
+# Prediction API
 # -----------------------------
 @app.route("/api/predict", methods=["POST"])
 def predict():
     try:
         data = request.get_json()
 
-        # Create input dataframe
-        input_data = pd.DataFrame([{
-            'Nitrogen': float(data['Nitrogen']),
-            'Phosphorous': float(data['Phosphorous']),
-            'Potassium': float(data['Potassium']),
-            'Temperature': float(data['Temperature']),
-            'Humidity': float(data['Humidity']),
-            'Soil_pH': float(data['Soil_pH']),
-            'Rainfall': float(data['Rainfall']),
-            'Altitude_msl': float(data['Altitude_msl']),
-            'Soil_Type': data['Soil_Type'],
-            'Organic_Carbon': float(data['Organic_Carbon']),
-            'Budget_per_Acre': float(data['Budget_per_Acre']),
-            'Sunlight_Hours': float(data['Sunlight_Hours'])
+        # 1️⃣ Build input dataframe
+        input_df = pd.DataFrame([{
+            "Nitrogen": float(data["Nitrogen"]),
+            "Phosphorous": float(data["Phosphorous"]),
+            "Potassium": float(data["Potassium"]),
+            "Temperature": float(data["Temperature"]),
+            "Humidity": float(data["Humidity"]),
+            "Soil_pH": float(data["Soil_pH"]),
+            "Rainfall": float(data["Rainfall"]),
+            "Altitude_msl": float(data["Altitude_msl"]),
+            "Organic_Carbon": float(data["Organic_Carbon"]),
+            "Budget_per_Acre": float(data["Budget_per_Acre"]),
+            "Sunlight_Hours": float(data["Sunlight_Hours"]),
+            "Soil_Type": data["Soil_Type"]
         }])
 
-        # One-hot encode Soil_Type
-        input_data = pd.get_dummies(input_data, columns=['Soil_Type'])
+        # 2️⃣ One-hot encode Soil_Type
+        input_df = pd.get_dummies(input_df, columns=["Soil_Type"])
 
-        # Align with training columns
-        input_data = input_data.reindex(
-            columns=model_columns,
-            fill_value=0
-        )
+        # 3️⃣ Align with training columns
+        input_df = input_df.reindex(columns=model_columns, fill_value=0)
 
-        # Predict
-        pred_encoded = rf_best_model.predict(input_data)[0]
-        predicted_crop = le.inverse_transform([pred_encoded])[0]
+        # 4️⃣ Predict
+        encoded_pred = rf_best_model.predict(input_df)[0]
+        crop_name = le.inverse_transform([encoded_pred])[0]
 
+        # 5️⃣ Return JSON
         return jsonify({
-            "status": "success",
-            "predicted_crop": predicted_crop,
-            "class_id": int(pred_encoded)
+            "success": True,
+            "predicted_crop": crop_name,
+            "class_id": int(encoded_pred)
         })
 
     except Exception as e:
         return jsonify({
-            "status": "error",
-            "message": str(e)
+            "success": False,
+            "error": str(e)
         }), 400
-
 
 # -----------------------------
 # Run App
 # -----------------------------
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run(debug=True)

@@ -1,25 +1,16 @@
 // ================================
-// Exotic Crop Recommendation - main.js
+// Exotic Crop Recommendation - recommendation.js
 // ================================
-
-
-
-
-
-
-
-
-
-// ML
-
 
 // API endpoint
 const API_URL = "/api/predict";
 
-// DOM Elements
-const form = document.getElementById("recommendForm");
-const resultSection = document.getElementById("resultSection");
-const cropNameEl = document.getElementById("predictedCrop");
+// -------------------------------
+// DOM Elements (FIXED IDs)
+// -------------------------------
+const form = document.getElementById("recommendationForm");
+const resultSection = document.getElementById("resultsSection");
+const cropNameEl = document.getElementById("cropResult");
 const cropImageEl = document.getElementById("cropImage");
 const errorEl = document.getElementById("errorMsg");
 
@@ -53,23 +44,25 @@ function collectFormData() {
             Soil_pH: getVal("Soil_pH"),
             Rainfall: getVal("Rainfall"),
             Altitude_msl: getVal("Altitude_msl"),
-            Soil_Type: document.getElementById("Soil_Type").value,
             Organic_Carbon: getVal("Organic_Carbon"),
             Budget_per_Acre: getVal("Budget_per_Acre"),
-            Sunlight_Hours: getVal("Sunlight_Hours")
+            Sunlight_Hours: getVal("Sunlight_Hours"),
+            Soil_Type: document.getElementById("Soil_Type").value
         };
     } catch (err) {
-        showError("Please fill all required fields correctly.");
+        showError("Please fill all fields correctly.");
         return null;
     }
 }
 
 // -------------------------------
-// Helper to Get Numeric Value
+// Helper: Get Numeric Value
 // -------------------------------
 function getVal(id) {
     const el = document.getElementById(id);
-    if (!el || el.value === "") throw new Error("Missing value");
+    if (!el || el.value === "") {
+        throw new Error(`Missing value: ${id}`);
+    }
     return parseFloat(el.value);
 }
 
@@ -86,13 +79,14 @@ function fetchPrediction(payload) {
     })
         .then(res => res.json())
         .then(data => {
-            if (data.status === "success") {
+            if (data.success) {
                 showResult(data.predicted_crop);
             } else {
-                showError(data.message || "Prediction failed.");
+                showError(data.error || "Prediction failed.");
             }
         })
-        .catch(() => {
+        .catch(err => {
+            console.error(err);
             showError("Server error. Please try again.");
         });
 }
@@ -103,13 +97,15 @@ function fetchPrediction(payload) {
 function showResult(cropName) {
     cropNameEl.innerText = cropName;
 
-    // Load crop image (naming must match crop)
-    cropImageEl.src = `/static/images/crops/${cropName}.jpg`;
-    cropImageEl.alt = cropName;
+    // Load crop image if exists
+    if (cropImageEl) {
+        cropImageEl.src = `/static/images/crops/${cropName}.jpg`;
+        cropImageEl.alt = cropName;
+    }
 
     resultSection.style.display = "block";
 
-    // Optional hooks
+    // Optional hook
     drawProfitChart(cropName);
 }
 
@@ -125,7 +121,11 @@ function clearUI() {
 // Show Error
 // -------------------------------
 function showError(message) {
-    if (errorEl) errorEl.innerText = message;
+    if (errorEl) {
+        errorEl.innerText = message;
+    } else {
+        alert(message);
+    }
 }
 
 // -------------------------------
@@ -133,12 +133,10 @@ function showError(message) {
 // -------------------------------
 function drawProfitChart(cropName) {
     /*
-    Hook this with Chart.js or any graph library.
-    Example:
-    - Fetch cost & profit data based on cropName
-    - Render bar / line chart
+      Hook with Chart.js / Recharts / ApexCharts
+      Example:
+      - Fetch cost & profit data based on cropName
+      - Render bar / line chart
     */
     console.log("Draw chart for:", cropName);
 }
-
-

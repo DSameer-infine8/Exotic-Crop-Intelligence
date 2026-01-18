@@ -46,14 +46,6 @@
     <div class="container">
         <div class="form-container">
 
-            <!-- Progress Indicator -->
-            <div class="progress-container">
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progressFill"></div>
-                </div>
-                <p class="progress-text">Complete all fields to get your recommendation</p>
-            </div>
-
             <!-- Input Form -->
             <form id="recommendationForm" class="recommendation-form">
 
@@ -63,40 +55,41 @@
                     <div class="form-grid">
 
                         <div class="form-group">
-                            <label for="Nitrogen">Nitrogen (N) Ratio</label>
+                            <label for="Nitrogen">Nitrogen (N)</label>
                             <input type="number" id="Nitrogen" min="0" max="150" required>
                         </div>
 
+                        <!-- FIXED: Phosphorous spelling -->
                         <div class="form-group">
-                            <label for="Phosphorus">Phosphorus (P) Ratio</label>
-                            <input type="number" id="Phosphorus" min="0" max="150" required>
+                            <label for="Phosphorous">Phosphorous (P)</label>
+                            <input type="number" id="Phosphorous" min="0" max="150" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="Potassium">Potassium (K) Ratio</label>
+                            <label for="Potassium">Potassium (K)</label>
                             <input type="number" id="Potassium" min="0" max="150" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="Soil_pH">Soil pH Value</label>
-                            <input type="number" id="Soil_pH" min="3" max="10"  required>
+                            <label for="Soil_pH">Soil pH</label>
+                            <input type="number" step="0.1" id="Soil_pH" min="3" max="10" required>
                         </div>
 
                         <div class="form-group">
                             <label for="Organic_Carbon">Organic Carbon (%)</label>
-                            <input type="number" id="Organic_Carbon" min="0" max="5" required>
+                            <input type="number" step="0.1" id="Organic_Carbon" min="0" max="5" required>
                         </div>
 
+                        <!-- FIXED: Soil_Type VALUES -->
                         <div class="form-group">
                             <label for="Soil_Type">Soil Type</label>
                             <select id="Soil_Type" required>
                                 <option value="">Select soil type</option>
-                                <option value="sandy">Sandy</option>
-                                <option value="loamy">Loamy</option>
-                                <option value="clay">Clay</option>
-                                <option value="sandy-loam">Sandy Loam</option>
-                                <option value="red-sandy">Red Sandy</option>
-                                <option value="well-drained">Well-drained</option>
+                                <option value="Sandy">Sandy</option>
+                                <option value="Loamy">Loamy</option>
+                                <option value="Clay">Clay</option>
+                                <option value="Red">Red</option>
+                                <option value="Black">Black</option>
                             </select>
                         </div>
 
@@ -109,41 +102,40 @@
                     <div class="form-grid">
 
                         <div class="form-group">
-                            <label for="Temperature">Average Temperature (°C)</label>
-                            <input type="number" id="Temperature" min="-10" max="45"  required>
+                            <label for="Temperature">Temperature (°C)</label>
+                            <input type="number" id="Temperature" required>
                         </div>
 
                         <div class="form-group">
                             <label for="Humidity">Humidity (%)</label>
-                            <input type="number" id="Humidity" min="0" max="100" required>
+                            <input type="number" id="Humidity" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="Rainfall">Annual Rainfall (mm)</label>
-                            <input type="number" id="Rainfall" min="0" max="5000" required>
+                            <label for="Rainfall">Rainfall (mm)</label>
+                            <input type="number" id="Rainfall" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="Sunlight_Hours">Sunlight Hours (per day)</label>
-                            <input type="number" id="Sunlight_Hours" min="0" max="12"  required>
+                            <label for="Sunlight_Hours">Sunlight Hours</label>
+                            <input type="number" id="Sunlight_Hours" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="Altitude_msl">Altitude (meters above MSL)</label>
-                            <input type="number" id="Altitude_msl" min="0" max="4000" required>
+                            <label for="Altitude_msl">Altitude (MSL)</label>
+                            <input type="number" id="Altitude_msl" required>
                         </div>
 
                     </div>
                 </div>
-                
 
                 <!-- Budget -->
                 <div class="form-section">
-                    <h3 class="form-section-title">Budget Information</h3>
+                    <h3 class="form-section-title">Budget</h3>
                     <div class="form-grid">
                         <div class="form-group">
-                            <label for="Budget_per_Acret">Budget per Acre (₹)</label>
-                            <input type="number" id="Budget_per_Acre" min="0" max="10000000" required>
+                            <label for="Budget_per_Acre">Budget per Acre (₹)</label>
+                            <input type="number" id="Budget_per_Acre" required>
                         </div>
                     </div>
                 </div>
@@ -151,7 +143,7 @@
                 <!-- Submit -->
                 <div class="form-actions">
                     <button type="submit" class="btn btn-primary btn-large">
-                        Get Crop Recommendation <span class="btn-arrow">→</span>
+                        Get Crop Recommendation →
                     </button>
                 </div>
 
@@ -160,7 +152,11 @@
 
         <!-- Results -->
         <div id="resultsSection" class="results-section" style="display:none;">
-            <div class="recommendation-card" id="recommendationCard"></div>
+            <div class="recommendation-card">
+                <h2 id="cropResult"></h2>
+                <img id="cropImage" alt="" />
+                <p id="errorMsg" class="error-text"></p>
+            </div>
 
             <div class="chart-section">
                 <h3 class="chart-title">5-Year Cost & Profit Projection</h3>
@@ -168,7 +164,7 @@
             </div>
 
             <div class="result-actions">
-                <button class="btn btn-secondary" onclick="resetForm()">Try Another Recommendation</button>
+                <button class="btn btn-secondary" onclick="window.location.reload()">Try Another</button>
                 <a href="{{ url_for('crops_page') }}" class="btn btn-outline">Explore All Crops</a>
             </div>
         </div>
@@ -179,16 +175,12 @@
 <!-- Footer -->
 <footer class="footer">
     <div class="container">
-        <div class="footer-bottom">
-            <p>&copy; 2025 Exotic Crop Intelligence. All rights reserved.</p>
-        </div>
+        <p>&copy; 2025 Exotic Crop Intelligence. All rights reserved.</p>
     </div>
 </footer>
 
 <!-- JS -->
-<script src="{{ url_for('static', filename='js/data.js') }}"></script>
-<script src="{{ url_for('static', filename='js/chart.js') }}"></script>
-<script src="{{ url_for('static', filename='js/recommend.js') }}"></script>
+<script src="{{ url_for('static', filename='js/recommendation.js') }}"></script>
 
 </body>
 </html>
