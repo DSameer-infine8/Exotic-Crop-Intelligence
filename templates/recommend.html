@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,9 +11,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -40,38 +37,68 @@
 <section class="page-header">
     <div class="container">
         <h1 class="page-title">Get Personalized Crop Recommendation</h1>
-        <p class="page-subtitle">
-            Enter your farm details to discover the best exotic crop for your land
-        </p>
+        <p class="page-subtitle">Enter your farm details to discover the best exotic crop for your land</p>
     </div>
 </section>
 
 <!-- Recommendation Form -->
 <section class="recommendation-section">
     <div class="container">
-
         <div class="form-container">
 
+            <!-- Progress Indicator -->
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <p class="progress-text">Complete all fields to get your recommendation</p>
+            </div>
+
             <!-- Input Form -->
-            <form id="recommendForm">
+            <form id="recommendationForm" class="recommendation-form">
 
                 <!-- Soil Composition -->
                 <div class="form-section">
                     <h3 class="form-section-title">Soil Composition</h3>
                     <div class="form-grid">
 
-                        <input id="Nitrogen" type="number" placeholder="Nitrogen (N)" required>
-                        <input id="Phosphorous" type="number" placeholder="Phosphorous (P)" required>
-                        <input id="Potassium" type="number" placeholder="Potassium (K)" required>
-                        <input id="Soil_pH" type="number" step="0.1" placeholder="Soil pH" required>
-                        <input id="Organic_Carbon" type="number" step="0.1" placeholder="Organic Carbon (%)" required>
+                        <div class="form-group">
+                            <label for="Nitrogen">Nitrogen (N) Ratio</label>
+                            <input type="number" id="Nitrogen" min="0" max="150" required>
+                        </div>
 
-                        <select id="Soil_Type" required>
-                            <option value="">Select Soil Type</option>
-                            <option value="Loamy">Loamy</option>
-                            <option value="Sandy">Sandy</option>
-                            <option value="Clay">Clay</option>
-                        </select>
+                        <div class="form-group">
+                            <label for="Phosphorus">Phosphorus (P) Ratio</label>
+                            <input type="number" id="Phosphorus" min="0" max="150" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Potassium">Potassium (K) Ratio</label>
+                            <input type="number" id="Potassium" min="0" max="150" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Soil_pH">Soil pH Value</label>
+                            <input type="number" id="Soil_pH" min="3" max="10"  required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Organic_Carbon">Organic Carbon (%)</label>
+                            <input type="number" id="Organic_Carbon" min="0" max="5" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Soil_Type">Soil Type</label>
+                            <select id="Soil_Type" required>
+                                <option value="">Select soil type</option>
+                                <option value="sandy">Sandy</option>
+                                <option value="loamy">Loamy</option>
+                                <option value="clay">Clay</option>
+                                <option value="sandy-loam">Sandy Loam</option>
+                                <option value="red-sandy">Red Sandy</option>
+                                <option value="well-drained">Well-drained</option>
+                            </select>
+                        </div>
 
                     </div>
                 </div>
@@ -81,20 +108,43 @@
                     <h3 class="form-section-title">Climate & Environment</h3>
                     <div class="form-grid">
 
-                        <input id="Temperature" type="number" step="0.1" placeholder="Temperature (°C)" required>
-                        <input id="Humidity" type="number" placeholder="Humidity (%)" required>
-                        <input id="Rainfall" type="number" placeholder="Rainfall (mm)" required>
-                        <input id="Sunlight_Hours" type="number" step="0.5" placeholder="Sunlight Hours" required>
-                        <input id="Altitude_msl" type="number" placeholder="Altitude (m)" required>
+                        <div class="form-group">
+                            <label for="Temperature">Average Temperature (°C)</label>
+                            <input type="number" id="Temperature" min="-10" max="45"  required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Humidity">Humidity (%)</label>
+                            <input type="number" id="Humidity" min="0" max="100" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Rainfall">Annual Rainfall (mm)</label>
+                            <input type="number" id="Rainfall" min="0" max="5000" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Sunlight_Hours">Sunlight Hours (per day)</label>
+                            <input type="number" id="Sunlight_Hours" min="0" max="12"  required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Altitude_msl">Altitude (meters above MSL)</label>
+                            <input type="number" id="Altitude_msl" min="0" max="4000" required>
+                        </div>
 
                     </div>
                 </div>
+                
 
                 <!-- Budget -->
                 <div class="form-section">
-                    <h3 class="form-section-title">Budget</h3>
+                    <h3 class="form-section-title">Budget Information</h3>
                     <div class="form-grid">
-                        <input id="Budget_per_Acre" type="number" placeholder="Budget per Acre (₹)" required>
+                        <div class="form-group">
+                            <label for="Budget_per_Acret">Budget per Acre (₹)</label>
+                            <input type="number" id="Budget_per_Acre" min="0" max="10000000" required>
+                        </div>
                     </div>
                 </div>
 
@@ -109,10 +159,18 @@
         </div>
 
         <!-- Results -->
-        <div id="resultSection" class="results-section" style="display:none;">
-            <h2 id="predictedCrop"></h2>
-            <img id="cropImage" alt="Recommended Crop">
-            <p id="errorMsg"></p>
+        <div id="resultsSection" class="results-section" style="display:none;">
+            <div class="recommendation-card" id="recommendationCard"></div>
+
+            <div class="chart-section">
+                <h3 class="chart-title">5-Year Cost & Profit Projection</h3>
+                <canvas id="profitChart"></canvas>
+            </div>
+
+            <div class="result-actions">
+                <button class="btn btn-secondary" onclick="resetForm()">Try Another Recommendation</button>
+                <a href="{{ url_for('crops_page') }}" class="btn btn-outline">Explore All Crops</a>
+            </div>
         </div>
 
     </div>
@@ -128,8 +186,9 @@
 </footer>
 
 <!-- JS -->
-<script src="{{ url_for('static', filename='js/main.js') }}"></script>
-<script src="{{ url_for('static', filename="js/recommendation.js") }}"></script>
+<script src="{{ url_for('static', filename='js/data.js') }}"></script>
+<script src="{{ url_for('static', filename='js/chart.js') }}"></script>
+<script src="{{ url_for('static', filename='js/recommend.js') }}"></script>
 
 </body>
 </html>

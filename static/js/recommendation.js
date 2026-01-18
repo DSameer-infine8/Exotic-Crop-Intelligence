@@ -2,6 +2,17 @@
 // Exotic Crop Recommendation - main.js
 // ================================
 
+
+
+
+
+
+
+
+
+// ML
+
+
 // API endpoint
 const API_URL = "/api/predict";
 
