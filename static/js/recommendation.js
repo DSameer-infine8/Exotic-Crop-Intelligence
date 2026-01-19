@@ -2,25 +2,21 @@
 // Exotic Crop Recommendation - recommendation.js
 // ================================
 
-// API endpoint
 const API_URL = "/api/predict";
 
 // -------------------------------
-// DOM Elements (FIXED IDs)
+// DOM Elements
 // -------------------------------
 const form = document.getElementById("recommendationForm");
 const resultSection = document.getElementById("resultsSection");
-const cropNameEl = document.getElementById("cropResult");
-const cropImageEl = document.getElementById("cropImage");
 const errorEl = document.getElementById("errorMsg");
 
 // -------------------------------
-// Form Submit Handler
+// Form Submit
 // -------------------------------
 if (form) {
     form.addEventListener("submit", function (e) {
-        e.preventDefault();
-
+        e.preventDefault();   // ✅ FIXED
         clearUI();
 
         const payload = collectFormData();
@@ -49,65 +45,116 @@ function collectFormData() {
             Sunlight_Hours: getVal("Sunlight_Hours"),
             Soil_Type: document.getElementById("Soil_Type").value
         };
-    } catch (err) {
+    } catch {
         showError("Please fill all fields correctly.");
         return null;
     }
 }
 
 // -------------------------------
-// Helper: Get Numeric Value
+// Helper
 // -------------------------------
 function getVal(id) {
     const el = document.getElementById(id);
-    if (!el || el.value === "") {
-        throw new Error(`Missing value: ${id}`);
-    }
+    if (!el || el.value === "") throw new Error();
     return parseFloat(el.value);
 }
 
 // -------------------------------
-// Fetch Prediction from Flask
+// Fetch Prediction
 // -------------------------------
 function fetchPrediction(payload) {
     fetch(API_URL, {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
     })
         .then(res => res.json())
         .then(data => {
-            if (data.success) {
-                showResult(data.predicted_crop);
+            if (data.success && data.predicted_crop) {
+                displayRecommendation(data.predicted_crop); // ✅ FIXED
             } else {
                 showError(data.error || "Prediction failed.");
             }
         })
-        .catch(err => {
-            console.error(err);
-            showError("Server error. Please try again.");
-        });
+        .catch(() => showError("Server error. Please try again."));
 }
 
 // -------------------------------
-// Show Result
+// Display Recommendation (MAIN UI)
 // -------------------------------
-function showResult(cropName) {
-    cropNameEl.innerText = cropName;
+function displayRecommendation(cropKey) {
+    const crop = cropsData[cropKey];
 
-    // Load crop image if exists
-    if (cropImageEl) {
-        cropImageEl.src = `/static/images/crops/${cropName}.jpg`;
-        cropImageEl.alt = cropName;
+    if (!crop) {
+        displayNoMatchWarning();
+        return;
     }
 
-    resultSection.style.display = "block";
+    const recommendationCard = document.getElementById("recommendationCard");
+    recommendationCard.innerHTML = `
+        <div class="recommendation-header">
+            <img class="recommendation-img" src='/static/images/${crop.name}.jpg' height="300" width="350">
+            <div class="recommendation-icon">${crop.image || "🌱"}</div>
+            <h2 class="recommendation-title">${crop.name}</h2>
+            <p class="recommendation-subtitle">${crop.scientificName}</p>
+        </div>
 
-    // Optional hook
-    drawProfitChart(cropName);
+        <div class="recommendation-body">
+            <div class="recommendation-details">
+                <div class="detail-card">
+                    <div class="detail-label">Initial Investment</div>
+                    <div class="detail-value">${crop.initialCostPerAcre}</div>
+                </div>
+                <div class="detail-card">
+                    <div class="detail-label">Annual Maintenance</div>
+                    <div class="detail-value">${crop.maintenanceCostPerYear}</div>
+                </div>
+                <div class="detail-card">
+                    <div class="detail-label">Expected Profit</div>
+                    <div class="detail-value">${crop.expectedProfitPerYear}</div>
+                </div>
+                <div class="detail-card">
+                    <div class="detail-label">Cultivation Period</div>
+                    <div class="detail-value">${crop.cultivationDuration}</div>
+                </div>
+                <div class="detail-card">
+                    <div class="detail-label">Market Demand</div>
+                    <div class="detail-value">${crop.marketDemand.split(' - ')[0]}</div>
+                </div>
+                <div class="detail-card">
+                    <div class="detail-label">Export Potential</div>
+                    <div class="detail-value">${crop.exportPotential}</div>
+                </div>
+            </div>
+        </div>
+    `;
+
+
+    // ✅ THIS WAS MISSING
+    resultSection.style.display = "block";
 }
+
+// -------------------------------
+// No Match UI
+// -------------------------------
+function displayNoMatchWarning() {
+    const recommendationCard = document.getElementById("recommendationCard");
+
+    recommendationCard.innerHTML = `
+        <div class="recommendation-header warning">
+            <div class="recommendation-icon">⚠️</div>
+            <h2>No Strong Match Found</h2>
+            <p>Try adjusting soil or climate parameters.</p>
+        </div>
+    `;
+
+    resultSection.style.display = "block";
+}
+
+
+
+
 
 // -------------------------------
 // Clear UI
@@ -126,17 +173,4 @@ function showError(message) {
     } else {
         alert(message);
     }
-}
-
-// -------------------------------
-// Chart Hook (Optional)
-// -------------------------------
-function drawProfitChart(cropName) {
-    /*
-      Hook with Chart.js / Recharts / ApexCharts
-      Example:
-      - Fetch cost & profit data based on cropName
-      - Render bar / line chart
-    */
-    console.log("Draw chart for:", cropName);
 }

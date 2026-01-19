@@ -150,17 +150,13 @@
             </form>
         </div>
 
-        <!-- Results -->
-        <div id="resultsSection" class="results-section" style="display:none;">
-            <div class="recommendation-card">
-                <h2 id="cropResult"></h2>
+        <!-- Results
+         <h2 id="cropResult"></h2>
                 <img id="cropImage" alt="" />
                 <p id="errorMsg" class="error-text"></p>
-            </div>
-
-            <div class="chart-section">
-                <h3 class="chart-title">5-Year Cost & Profit Projection</h3>
-                <canvas id="profitChart"></canvas>
+          -->
+        <div id="resultsSection" class="results-section" style="display:none;">
+            <div class="recommendation-card" id="recommendationCard">
             </div>
 
             <div class="result-actions">
@@ -180,6 +176,7 @@
 </footer>
 
 <!-- JS -->
+<script src="{{ url_for('static', filename='js/data.js') }}"></script>
 <script src="{{ url_for('static', filename='js/recommendation.js') }}"></script>
 
 </body>

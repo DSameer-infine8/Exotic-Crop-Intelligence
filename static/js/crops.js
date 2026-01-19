@@ -28,6 +28,7 @@ function createCropCard(crop, cropKey) {
 
     card.innerHTML = `
         <div class="crop-image">
+        <img class="recommendation-img" src='/static/images/${crop.name}.jpg' height="300" width="350">
             ${crop.image}
         </div>
         <div class="crop-content">

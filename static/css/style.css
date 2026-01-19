@@ -1032,6 +1032,11 @@ a {
     margin-bottom: var(--spacing-md);
 }
 
+.recommendation-img{
+    margin-left: auto;
+    margin-right: auto ;
+}
+
 .why-recommended ul {
     list-style: none;
 }

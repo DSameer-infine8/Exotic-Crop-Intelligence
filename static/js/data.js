@@ -1,15 +1,15 @@
 // Comprehensive Exotic Crop Database for Indian Agriculture
 const cropsData = {
-    ashwagandha: {
+    'Ashwagandha': {
         name: "Ashwagandha",
         scientificName: "Withania somnifera",
         image: "🌿",
         climate: "Semi-arid tropical",
-        temperature: { min: 20, max: 38, optimal: 25 },
-        soilType: "Red Sandy Loam",
-        soilPH: { min: 7.5, max: 8.0, optimal: 7.8 },
+        temperature: { min: 16, max: 38, optimal: 25 },
+        soilType: "Sandy Loam",
+        soilPH: { min: 6.0, max: 8.5, optimal: 7.8 },
         waterRequirement: "Low (300-500mm annually)",
-        rainfall: { min: 300, max: 500, optimal: 400 },
+        rainfall: { min: 260, max: 536, optimal: 400 },
         sunlightHours: { min: 6, max: 8, optimal: 7 },
         altitude: { min: 0, max: 1500, optimal: 600 },
         nitrogen: { min: 20, max: 40, optimal: 30 },
@@ -17,7 +17,7 @@ const cropsData = {
         potassium: { min: 20, max: 40, optimal: 30 },
         humidity: { min: 40, max: 60, optimal: 50 },
         organicCarbon: { min: 0.3, max: 0.8, optimal: 0.5 },
-        initialCostPerAcre: "₹40,000 - ₹60,000",
+        initialCostPerAcre: "₹30,000 - ₹80,000",
         maintenanceCostPerYear: "₹25,000 - ₹35,000",
         expectedProfitPerYear: "₹1,50,000 - ₹2,50,000",
         cultivationDuration: "150-180 days",
@@ -42,7 +42,7 @@ const cropsData = {
             "Quality certification important"
         ]
     },
-    asparagus: {
+    'Asparagus': {
         name: "Asparagus",
         scientificName: "Asparagus officinalis",
         image: "🌱",
@@ -59,7 +59,7 @@ const cropsData = {
         potassium: { min: 40, max: 70, optimal: 55 },
         humidity: { min: 50, max: 70, optimal: 60 },
         organicCarbon: { min: 0.8, max: 1.5, optimal: 1.2 },
-        initialCostPerAcre: "₹1,50,000 - ₹2,00,000",
+        initialCostPerAcre: "₹1,50,000 - ₹2,50,000",
         maintenanceCostPerYear: "₹60,000 - ₹80,000",
         expectedProfitPerYear: "₹3,00,000 - ₹5,00,000",
         cultivationDuration: "Perennial (10-15 years)",
@@ -85,7 +85,7 @@ const cropsData = {
             "Specialized cultivation knowledge"
         ]
     },
-    avocado: {
+    'Avocado': {
         name: "Avocado",
         scientificName: "Persea americana",
         image: "🥑",
@@ -102,7 +102,7 @@ const cropsData = {
         potassium: { min: 60, max: 100, optimal: 80 },
         humidity: { min: 60, max: 80, optimal: 70 },
         organicCarbon: { min: 1.0, max: 2.0, optimal: 1.5 },
-        initialCostPerAcre: "₹2,00,000 - ₹3,00,000",
+        initialCostPerAcre: "₹1,50,000 - ₹3,00,000",
         maintenanceCostPerYear: "₹80,000 - ₹1,20,000",
         expectedProfitPerYear: "₹5,00,000 - ₹10,00,000",
         cultivationDuration: "Perennial (3-4 years to bearing)",
@@ -128,8 +128,8 @@ const cropsData = {
             "Pest management needed"
         ]
     },
-    blueberry: {
-        name: "Blueberry",
+    'Blueberries': {
+        name: "Blueberries",
         scientificName: "Vaccinium corymbosum",
         image: "🫐",
         climate: "Temperate, Cool",
@@ -172,7 +172,7 @@ const cropsData = {
             "Limited suitable regions"
         ]
     },
-    broccoli: {
+    'Broccoli': {
         name: "Broccoli",
         scientificName: "Brassica oleracea",
         image: "🥦",
@@ -215,7 +215,7 @@ const cropsData = {
             "Market timing important"
         ]
     },
-    buttonMushroom: {
+    'Button Mushroom': {
         name: "Button Mushroom",
         scientificName: "Agaricus bisporus",
         image: "🍄",
@@ -259,8 +259,8 @@ const cropsData = {
             "Initial investment high"
         ]
     },
-    capsicum: {
-        name: "Capsicum (Bell Pepper)",
+    'Colored Pepper': {
+        name: "Capsicum (Colored Pepper)",
         scientificName: "Capsicum annuum",
         image: "🫑",
         climate: "Warm temperate",
@@ -302,7 +302,7 @@ const cropsData = {
             "Cold chain needed"
         ]
     },
-    dragonFruit: {
+    'Dragon Fruit': {
         name: "Dragon Fruit",
         scientificName: "Hylocereus undatus",
         image: "🐉",
@@ -345,7 +345,7 @@ const cropsData = {
             "Proper spacing critical"
         ]
     },
-    kiwi: {
+    'Kiwi': {
         name: "Kiwi",
         scientificName: "Actinidia deliciosa",
         image: "🥝",
@@ -389,7 +389,7 @@ const cropsData = {
             "Male-female plant ratio management"
         ]
     },
-    mangosteen: {
+    'Mangosteen': {
         name: "Mangosteen",
         scientificName: "Garcinia mangostana",
         image: "🟣",
@@ -433,7 +433,7 @@ const cropsData = {
             "Patience required"
         ]
     },
-    rambutan: {
+    'Rambutan': {
         name: "Rambutan",
         scientificName: "Nephelium lappaceum",
         image: "🔴",
@@ -477,7 +477,7 @@ const cropsData = {
             "Specific climate zones only"
         ]
     },
-    saffron: {
+    'Saffron': {
         name: "Saffron",
         scientificName: "Crocus sativus",
         image: "🌸",
@@ -521,7 +521,7 @@ const cropsData = {
             "Quality certification crucial"
         ]
     },
-    shiitakeMushroom: {
+    'Shiitake Mushroom': {
         name: "Shiitake Mushroom",
         scientificName: "Lentinula edodes",
         image: "🍄",
@@ -565,7 +565,7 @@ const cropsData = {
             "Market development needed"
         ]
     },
-    vanilla: {
+    'Vanilla': {
         name: "Vanilla",
         scientificName: "Vanilla planifolia",
         image: "🌺",
