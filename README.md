@@ -27,24 +27,18 @@ It helps farmers, researchers, and agri-tech developers make **data-driven crop 
 
 ## 🎥 Demo Preview
 
-### 1️⃣ Application UI & Design Flow
+### 1️. Application UI & Design Flow
 _Shows homepage, form input, and navigation_
 
 ![UI Demo](static/ui.gif)
 
 ---
 
-### 2️⃣ Recommendation System (Model → Output)
+### 2️. Recommendation System (Model → Output)
 _Shows input values, model execution, and predicted crop_
 
 ![Model Demo](static/recommend.gif)
 
-> 📌 **Note:**  
-> Place the GIF files inside:
-> ```
-> static/gifs/ui-demo.gif
-> static/gifs/model-demo.gif
-> ```
 
 ---
 
@@ -105,7 +99,7 @@ Exotic-Crop-Intelligence/
 ├── static/
 │ ├── css/
 │ ├── js/
-│ └── gifs/
+│ 
 │
 └── README.md
 ```
@@ -131,9 +125,6 @@ Exotic-Crop-Intelligence/
 git clone https://github.com/your-username/Exotic-Crop-Intelligence.git
 cd Exotic-Crop-Intelligence
 ```
----
-
-## 🖥️ How to Run the Project Locally
 
 ### ✅ Step 2: Create a Virtual Environment (Recommended)
 
@@ -148,26 +139,21 @@ Windows
 venv\Scripts\activate
 ```
 
-Linux / macOS
-```bash
-source venv/bin/activate
-```
-
-Step 3: Install Required Dependencies
+### ✅ Step 3: Install Required Dependencies
 
 Make sure you are inside the project root directory, then run:
 ```bash
 pip install -r requirements.txt
 ```
 
-Step 4: Run the Flask Application
+### ✅ Step 4: Run the Flask Application
 
 Start the Flask server using:
 ```bash
 python app.py
 ```
 
-Step 5: Open the Application in Browser
+### ✅ Step 5: Open the Application in Browser
 
 Open your web browser and visit:
 ```
